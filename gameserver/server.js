@@ -18,19 +18,22 @@ io.sockets.on('connection', function (socket, pseudo) {
     socket.on('nouveau_client', function(pseudo) {
         pseudo = ent.encode(pseudo);
         var p = new user(id, pseudo, socket);
-    	users.push(p);
+    	users[id] = p;
     	socket.id = id;
         console.log("New Connection = id: " + id + " pseudo: " + pseudo);
         id++;
     });
 
     socket.on('matchMe', function () {
-            if(waiting == ""){
+    		console.log("Joueur " + socket.id + " recherche une partie");
+    		console.log("Waiting = " + waiting);
+            if(waiting === ""){
                 waiting = socket.id;
             }
             else{
                 match.push({id1:waiting,id2:socket.id});
-                io.sockets.socket(waiting).emit('matchFound');
+                console.log("MatchCréé");
+                users[waiting].socket.emit('matchFound');
                 socket.emit('matchFound');
                 waiting = "";
             }

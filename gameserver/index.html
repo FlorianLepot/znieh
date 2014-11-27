@@ -43,6 +43,10 @@
                 $('#zone_chat').prepend(' a rejoint le Chat !</em></p>');
             })
 
+            socket.on('matchFound', function() {
+                alert("Partie trouvée");
+            })
+
             $('#formulaire_chat').submit(function () {
                 socket.emit('matchMe'); 
                 return false;
