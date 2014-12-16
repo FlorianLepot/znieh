@@ -1,5 +1,5 @@
 set :application, "znieh"
-set :domain,      "spyl.net"
+set :domain,      "195.154.9.109"
 set :deploy_to,   "/var/www/#{application}"
 set :app_path,    "app"
 
